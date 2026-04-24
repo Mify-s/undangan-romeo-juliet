@@ -29,24 +29,48 @@
             --light-rose: #F0D5D5;
         }
 
-        html { scroll-behavior: smooth; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { 
+            scroll-behavior: smooth; 
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--cream);
             color: var(--primary-brown);
             overflow-x: hidden;
+            line-height: 1.6;
         }
-        .font-aesthetic { font-family: 'Great Vibes', cursive; }
+
+        .font-aesthetic { 
+            font-family: 'Great Vibes', cursive;
+            font-weight: 400;
+        }
         
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--cream); }
+        ::-webkit-scrollbar { 
+            width: 8px; 
+        }
+
+        ::-webkit-scrollbar-track { 
+            background: var(--cream); 
+        }
+
         ::-webkit-scrollbar-thumb { 
             background: linear-gradient(180deg, var(--accent-gold), var(--accent-brown)); 
             border-radius: 10px; 
         }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-brown); }
 
+        ::-webkit-scrollbar-thumb:hover { 
+            background: var(--accent-brown); 
+        }
+
+        /* Animations */
         @keyframes pulse-gold {
             0% { box-shadow: 0 0 0 0 rgba(201, 169, 97, 0.4); }
             70% { box-shadow: 0 0 0 15px rgba(201, 169, 97, 0); }
@@ -59,9 +83,6 @@
             100% { box-shadow: 0 0 0 0 rgba(160, 136, 107, 0); }
         }
         
-        .btn-premium { animation: pulse-gold 2s infinite; }
-        .btn-brown { animation: pulse-brown 2s infinite; }
-
         @keyframes slideOutUp {
             0% { transform: translateY(0); opacity: 1; }
             100% { transform: translateY(-100%); opacity: 0; }
@@ -77,11 +98,26 @@
             100% { transform: translateX(0); opacity: 1; }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .btn-premium { animation: pulse-gold 2s infinite; }
+        .btn-brown { animation: pulse-brown 2s infinite; }
+        .fa-spin { animation: spin 1s linear infinite; }
+
+        /* Floating Controls */
         .floating-controls {
             position: fixed;
             bottom: 25px;
@@ -91,6 +127,7 @@
             gap: 12px;
             z-index: 999;
         }
+
         .control-btn {
             width: 45px;
             height: 45px;
@@ -101,17 +138,22 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             border: none;
+            font-size: 1.2rem;
         }
         
         .control-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .control-btn:active {
+            transform: scale(0.95);
         }
         
-        /* Profile Frame Styling */
+        /* Profile Frame */
         .profile-frame {
             position: relative;
             width: 256px;
@@ -145,26 +187,11 @@
         
         .profile-wrapper {
             position: relative;
-        }
-        
-        .profile-badge {
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--accent-gold), var(--light-brown));
-            border: 4px solid white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            width: 100%;
         }
 
-        /* --- LOGIKA BACKGROUND FIT & FIXED --- */
+        /* Background Layer */
         .fixed-bg-layer {
             position: absolute;
             top: 0;
@@ -172,46 +199,36 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background-image: url('assets/images/Pattern.png');
+            background-image: url('assets/images/PATTERN.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
 
-        /* Khusus Mobile: Background-attachment fixed sering bermasalah di HP */
         @media (max-width: 1023px) {
             .fixed-bg-layer {
                 background-attachment: scroll;
             }
         }
 
-        /* Spinner animation */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .fa-spin {
-            animation: spin 1s linear infinite;
-        }
-
-        /* Input focus effects */
+        /* Input Focus */
         input:focus, textarea:focus, select:focus {
             background-color: rgba(160, 136, 107, 0.1) !important;
             border-color: var(--accent-gold) !important;
         }
 
-        /* Radio button styling */
+        /* Radio Buttons */
         input[type="radio"] {
             accent-color: var(--accent-brown);
+            cursor: pointer;
         }
         
         input[type="radio"]:checked {
             accent-color: var(--accent-gold);
         }
         
-        /* Section backgrounds with gradient */
+        /* Sections */
         .section-primary {
             background: linear-gradient(135deg, var(--primary-brown) 0%, var(--accent-brown) 100%);
         }
@@ -220,138 +237,27 @@
             background: linear-gradient(to bottom, var(--cream), rgba(160, 136, 107, 0.05));
         }
         
-        /* Accent elements */
+        /* Accent Divider */
         .accent-divider {
             background: linear-gradient(90deg, var(--accent-gold) 0%, var(--accent-brown) 50%, var(--accent-gold) 100%);
         }
 
-        /* Scrollbar for wish container */
+        /* Wish Container */
         #wish-container::-webkit-scrollbar {
             width: 6px;
         }
+
         #wish-container::-webkit-scrollbar-track {
             background: var(--cream);
             border-radius: 10px;
         }
+
         #wish-container::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, var(--accent-gold), var(--accent-brown));
             border-radius: 10px;
         }
 
-        /* Map iframe responsive fix */
-        .map-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 100%;
-            height: 0;
-            overflow: hidden;
-        }
-        .map-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Responsive font sizes */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem !important; }
-            h2 { font-size: 2rem !important; }
-            h3 { font-size: 1.5rem !important; }
-            .font-aesthetic { font-size: inherit; }
-            .floating-controls { bottom: 15px; left: 15px; gap: 10px; }
-            .control-btn { width: 40px; height: 40px; }
-        }
-
-        /* Mobile-friendly profile frame */
-        @media (max-width: 768px) {
-            .profile-frame {
-                width: 200px;
-                height: 260px;
-            }
-        }
-
-        /* Gallery responsive on mobile */
-        @media (max-width: 640px) {
-            .columns-2, .columns-3, .columns-4 {
-                columns: 1 !important;
-            }
-        }
-
-        /* Fix button text overflow */
-        button { word-break: break-word; }
-        a { word-break: break-word; }
-
-        /* Image optimization */
-        img { max-width: 100%; height: auto; }
-
-        /* Form responsiveness */
-        @media (max-width: 640px) {
-            .grid-cols-3 { grid-template-columns: 1fr !important; }
-        }
-
-        /* Loading skeleton */
-        .skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        /* Success message styling */
-        .success-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            text-align: center;
-            max-width: 90%;
-        }
-
-        .success-icon {
-            font-size: 3rem;
-            color: var(--accent-gold);
-            margin-bottom: 1rem;
-            animation: bounce 0.6s ease-in-out;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Error toast */
-        .error-toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #e53e3e;
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
-            z-index: 1000;
-            animation: slideInRight 0.3s ease-out;
-        }
-
-        @media (max-width: 640px) {
-            .error-toast {
-                left: 20px;
-                right: 20px;
-                bottom: 80px;
-            }
-        }
-
-        /* Guest stats cards */
+        /* Stat Cards */
         .stat-card {
             background: white;
             border-radius: 1rem;
@@ -366,25 +272,165 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
 
-        /* Wish item animation */
+        /* Wish Item */
         .wish-item {
             animation: fadeInUp 0.5s ease-out;
         }
 
-        /* Tab indicator */
-        .tab-active {
-            border-bottom: 3px solid var(--accent-gold);
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            text-align: center;
+            max-width: 90%;
+            animation: bounce 0.6s ease-in-out;
+        }
+
+        .success-icon {
+            font-size: 3rem;
             color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        /* Error Toast */
+        .error-toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #e53e3e;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            z-index: 1000;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        /* Responsive Typography */
+        @media (max-width: 640px) {
+            h1 { font-size: 2.5rem !important; }
+            h2 { font-size: 1.875rem !important; }
+            h3 { font-size: 1.5rem !important; }
+            h4 { font-size: 1.125rem !important; }
+            
+            .floating-controls { 
+                bottom: 15px; 
+                left: 15px; 
+                gap: 10px; 
+            }
+
+            .control-btn { 
+                width: 40px; 
+                height: 40px; 
+                font-size: 1rem;
+            }
+
+            .error-toast {
+                left: 20px;
+                right: 20px;
+                bottom: 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem !important; }
+            h2 { font-size: 1.5rem !important; }
+            h3 { font-size: 1.25rem !important; }
+
+            .profile-frame {
+                width: 200px;
+                height: 260px;
+            }
+        }
+
+        /* Mobile Gallery */
+        @media (max-width: 640px) {
+            .columns-2, .columns-3, .columns-4 {
+                columns: 1 !important;
+            }
+
+            .grid-cols-3 { 
+                grid-template-columns: 1fr !important; 
+            }
+        }
+
+        /* General Utilities */
+        button { 
+            word-break: break-word;
+            font-family: inherit;
+        }
+
+        a { 
+            word-break: break-word;
+        }
+
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            display: block;
+        }
+
+        /* Overlay specific styles */
+        #overlay {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #overlay > div {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Responsive overlay content */
+        @media (max-width: 480px) {
+            #overlay {
+                background-attachment: scroll !important;
+            }
+
+            #overlay h1 {
+                font-size: 2.5rem;
+                line-height: 1.1;
+            }
+
+            #overlay h2 {
+                font-size: 1.125rem;
+            }
+
+            #overlay p {
+                font-size: 0.875rem;
+            }
+
+            #overlay button {
+                font-size: 0.875rem;
+            }
+        }
+
+        @media (max-width: 768px) and (min-width: 481px) {
+            #overlay h1 {
+                font-size: 3.5rem;
+            }
+
+            #overlay h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 
 </head>
 <body class="overflow-hidden">
 
-<audio id="weddingMusic" loop>
+<!-- Audio Background Music -->
+<audio id="weddingMusic" loop preload="auto">
     <source src="assets/music/lagu-nikah.mp3" type="audio/mpeg">
 </audio>
 
+<!-- Floating Controls -->
 <div id="controls" class="floating-controls hidden">
     <button type="button" onclick="toggleFullscreen()" class="control-btn" title="Fullscreen" aria-label="Toggle Fullscreen">
         <i id="fsIcon" class="fas fa-expand"></i>
@@ -394,23 +440,37 @@
     </button>
 </div>
 
-<div id="overlay" class="fixed inset-0 z-[100] flex items-center justify-center bg-cover bg-center transition-all duration-[1200ms] ease-in-out" 
-     style="background-image: linear-gradient(rgba(93, 78, 71, 0.7), rgba(93, 78, 71, 0.7)), url('assets/images/COVER.PNG');">
+<!-- Overlay/Cover -->
+<div id="overlay" class="fixed inset-0 z-[100] flex items-center justify-center transition-all duration-[1200ms] ease-in-out" 
+     style="background: linear-gradient(rgba(93, 78, 71, 0.65), rgba(93, 78, 71, 0.65)), url('assets/images/COVER.PNG') center/cover no-repeat fixed, linear-gradient(135deg, #8B7355 0%, #A0886B 100%);">
     
-    <div class="text-center text-white px-4" data-aos="zoom-in">
-        <h4 class="uppercase tracking-[0.4em] text-[10px] md:text-xs mb-4">The Wedding of</h4>
-        <h1 class="font-aesthetic text-6xl md:text-8xl mb-8" style="color: #F5F1ED;">Romeo & Juliet</h1>
-        <p class="mb-2 italic text-sm opacity-90">Kepada Yth. Bapak/Ibu/Saudara/i</p>
-        <h2 class="text-xl md:text-2xl font-bold mb-10 tracking-wide uppercase">Tamu Undangan</h2>
+    <div class="text-center text-white px-3 sm:px-4 md:px-6 w-full" data-aos="zoom-in">
+        <!-- Header -->
+        <h4 class="uppercase tracking-[0.3em] text-[8px] sm:text-[9px] md:text-xs lg:text-sm mb-2 sm:mb-3 md:mb-4 font-semibold opacity-90">The Wedding of</h4>
         
-        <button type="button" onclick="bukaUndangan()" class="btn-premium bg-gradient-to-r from-[#C9A961] via-[#D9B97D] to-[#C9A961] hover:shadow-2xl text-white px-8 md:px-10 py-4 rounded-full transition-all duration-500 shadow-2xl flex items-center gap-3 mx-auto">
-            <i class="fas fa-envelope-open-text animate-bounce"></i> BUKA UNDANGAN
+        <!-- Main Title -->
+        <h1 class="font-aesthetic text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-4 sm:mb-6 md:mb-8 leading-tight" style="color: #F5F1ED;">
+            Romeo <span class="hidden sm:inline">&</span><span class="sm:hidden"><br>&</span> Juliet
+        </h1>
+        
+        <!-- Subtitle -->
+        <p class="mb-1 sm:mb-2 italic text-xs sm:text-sm md:text-base opacity-90">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+        
+        <!-- Guest Title -->
+        <h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 md:mb-10 tracking-wide uppercase">Tamu Undangan</h2>
+        
+        <!-- Action Button -->
+        <button type="button" onclick="bukaUndangan()" class="btn-premium bg-gradient-to-r from-[#C9A961] via-[#D9B97D] to-[#C9A961] hover:shadow-2xl text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full transition-all duration-500 shadow-2xl inline-flex items-center gap-2 justify-center text-sm md:text-base font-bold hover:scale-105 active:scale-95">
+            <i class="fas fa-envelope-open-text animate-bounce"></i> 
+            <span>BUKA UNDANGAN</span>
         </button>
     </div>
 </div>
 
+<!-- Main Content -->
 <main id="main-content" class="opacity-0 transition-opacity duration-1000">
     
+    <!-- Section 1: Mempelai Pengantin -->
     <section id="top-section" class="relative min-h-screen w-full flex items-center justify-center py-12 md:py-20 px-4 md:px-6 overflow-hidden">
         
         <div class="fixed-bg-layer"></div>
@@ -424,7 +484,7 @@
             </h2>
             
             <div class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="400">
-                <p class="text-sm md:text-lg leading-relaxed italic mb-8" style="color: var(--primary-brown);">
+                <p class="text-sm md:text-lg leading-relaxed italic mb-8 px-2" style="color: var(--primary-brown);">
                     "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya."
                 </p>
                 
@@ -435,21 +495,23 @@
         </div>
     </section>
 
+    <!-- Section 2: Profil Mempelai -->
     <section class="py-16 md:py-24 bg-white relative z-10">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row flex-wrap items-center justify-center gap-8 md:gap-12">
-                <!-- Romeo -->
-                <div class="text-center w-full md:w-5/12 px-4" data-aos="fade-right">
+                
+                <!-- Romeo Profile -->
+                <div class="text-center w-full md:w-5/12 px-2 md:px-4" data-aos="fade-right">
                     <div class="profile-wrapper mb-8">
                         <div class="profile-frame">
-                            <img src="assets/images/pria.jpg" alt="Romeo" class="w-full h-full object-cover">
+                            <img src="assets/images/pria.jpg" alt="Romeo - Groom" class="w-full h-full object-cover">
                         </div>
                     </div>
                     <h3 class="font-aesthetic text-4xl md:text-5xl mb-2" style="color: var(--primary-brown);">Romeo</h3>
-                    <h4 class="font-aesthetic text-2xl mb-3" style="color: var(--accent-gold);">Montague</h4>
-                    <p class="font-bold uppercase tracking-widest text-xs mb-4" style="color: var(--primary-brown);">Putra dari Lord & Lady Montague</p>
-                    <p class="text-sm text-gray-600 mb-6 italic">Gentle soul dengan hati emas yang siap membangun rumah tangga dengan penuh kasih sayang</p>
-                    <a href="https://www.instagram.com/?hl=en" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-[#C9A961] to-[#A0886B] text-white px-6 py-2 rounded-full text-xs font-bold hover:shadow-lg transition-all">
+                    <h4 class="font-aesthetic text-2xl md:text-3xl mb-3" style="color: var(--accent-gold);">Montague</h4>
+                    <p class="font-bold uppercase tracking-widest text-[11px] md:text-xs mb-4" style="color: var(--primary-brown);">Putra dari Lord & Lady Montague</p>
+                    <p class="text-sm text-gray-600 mb-6 italic px-2">Gentle soul dengan hati emas yang siap membangun rumah tangga dengan penuh kasih sayang</p>
+                    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-[#C9A961] to-[#A0886B] text-white px-6 py-2 rounded-full text-xs font-bold hover:shadow-lg transition-all">
                         <i class="fab fa-instagram"></i> @romeo
                     </a>
                 </div>
@@ -461,18 +523,18 @@
                     <div class="w-1 h-32 accent-divider"></div>
                 </div>
 
-                <!-- Juliet -->
-                <div class="text-center w-full md:w-5/12 px-4" data-aos="fade-left">
+                <!-- Juliet Profile -->
+                <div class="text-center w-full md:w-5/12 px-2 md:px-4" data-aos="fade-left">
                     <div class="profile-wrapper mb-8">
                         <div class="profile-frame">
-                            <img src="assets/images/wanita.jpg" alt="Juliet" class="w-full h-full object-cover">
+                            <img src="assets/images/wanita.jpg" alt="Juliet - Bride" class="w-full h-full object-cover">
                         </div>
                     </div>
                     <h3 class="font-aesthetic text-4xl md:text-5xl mb-2" style="color: var(--primary-brown);">Juliet</h3>
-                    <h4 class="font-aesthetic text-2xl mb-3" style="color: var(--accent-gold);">Capulet</h4>
-                    <p class="font-bold uppercase tracking-widest text-xs mb-4" style="color: var(--primary-brown);">Putri dari Lord & Lady Capulet</p>
-                    <p class="text-sm text-gray-600 mb-6 italic">Wanita cerdas dan berbudi luhur yang siap menjadi belahan jiwa dengan sepenuh hati</p>
-                    <a href="https://www.instagram.com/?hl=en" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-[#C9A961] to-[#A0886B] text-white px-6 py-2 rounded-full text-xs font-bold hover:shadow-lg transition-all">
+                    <h4 class="font-aesthetic text-2xl md:text-3xl mb-3" style="color: var(--accent-gold);">Capulet</h4>
+                    <p class="font-bold uppercase tracking-widest text-[11px] md:text-xs mb-4" style="color: var(--primary-brown);">Putri dari Lord & Lady Capulet</p>
+                    <p class="text-sm text-gray-600 mb-6 italic px-2">Wanita cerdas dan berbudi luhur yang siap menjadi belahan jiwa dengan sepenuh hati</p>
+                    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-[#C9A961] to-[#A0886B] text-white px-6 py-2 rounded-full text-xs font-bold hover:shadow-lg transition-all">
                         <i class="fab fa-instagram"></i> @juliet
                     </a>
                 </div>
@@ -480,11 +542,13 @@
         </div>
     </section>
 
+    <!-- Section 3: Acara Pernikahan -->
     <section class="py-16 md:py-24 relative z-10 section-primary text-white">
         <div class="container mx-auto px-4 text-center">
             <h2 class="font-aesthetic text-5xl md:text-7xl mb-4" data-aos="fade-down">Acara Pernikahan</h2>
             <p class="text-xs md:text-sm opacity-90 mb-8 md:mb-12 italic" data-aos="fade-down" data-aos-delay="100">Waktu terus berjalan, jangan lewatkan momen istimewa ini</p>
             
+            <!-- Countdown Timer -->
             <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12" data-aos="zoom-in" data-aos-delay="200">
                 <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);" class="p-3 md:p-5 rounded-xl md:rounded-2xl min-w-[60px] md:min-w-[120px] border border-white/20 hover:bg-white/20 transition-all">
                     <span id="days" class="block text-xl md:text-5xl font-bold" style="color: var(--accent-gold);">00</span>
@@ -504,7 +568,9 @@
                 </div>
             </div>
 
+            <!-- Event Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 max-w-4xl mx-auto px-4 text-gray-800">
+                <!-- Akad Nikah Card -->
                 <div class="bg-white p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105" data-aos="flip-left" data-aos-delay="300">
                     <div class="flex items-center justify-center w-16 h-16 rounded-full mx-auto mb-4" style="background: linear-gradient(135deg, var(--accent-gold), var(--accent-brown));">
                         <i class="fas fa-mosque text-white text-2xl"></i>
@@ -515,6 +581,7 @@
                     <p class="text-xs italic text-gray-500"><i class="fas fa-map-marker-alt mr-2" style="color: var(--accent-gold);"></i> Masjid Raya Al-Ikhlas</p>
                 </div>
 
+                <!-- Resepsi Card -->
                 <div class="bg-white p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105" data-aos="flip-right" data-aos-delay="400">
                     <div class="flex items-center justify-center w-16 h-16 rounded-full mx-auto mb-4" style="background: linear-gradient(135deg, var(--accent-gold), var(--accent-brown));">
                         <i class="fas fa-utensils text-white text-2xl"></i>
@@ -528,6 +595,7 @@
         </div>
     </section>
 
+    <!-- Section 4: Gallery -->
     <section class="py-16 md:py-24 bg-white relative z-10">
         <div class="container mx-auto px-4">
             <h2 class="font-aesthetic text-center text-4xl md:text-6xl mb-8 md:mb-16" style="color: var(--primary-brown);" data-aos="fade-up">Our Gallery</h2>
@@ -542,11 +610,13 @@
         </div>
     </section>
 
+    <!-- Section 5: Lokasi Acara -->
     <section class="py-16 md:py-24 relative z-10" style="background: linear-gradient(135deg, var(--primary-brown) 0%, var(--accent-brown) 100%);">
         <div class="container mx-auto px-4">
             <h2 class="font-aesthetic text-center text-4xl md:text-6xl mb-8 md:mb-16 text-white" data-aos="fade-up">Lokasi Acara</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
-                <!-- Lokasi Akad Nikah -->
+                
+                <!-- Akad Nikah Location -->
                 <div class="bg-white rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all" data-aos="fade-right">
                     <div class="h-64 md:h-80 w-full">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.0484433150263!2d107.17068502346846!3d-6.920632493082124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e41ee2bf1af3%3A0x6c51ef63a9eb1e4f!2sMasjid%20Raya%20Banten!5e0!3m2!1sid!2sid!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lokasi Akad Nikah"></iframe>
@@ -563,7 +633,7 @@
                     </div>
                 </div>
 
-                <!-- Lokasi Resepsi -->
+                <!-- Resepsi Location -->
                 <div class="bg-white rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all" data-aos="fade-left">
                     <div class="h-64 md:h-80 w-full">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.0844444159264!2d107.17523502346836!3d-6.917892493086824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e43a9e9e9e9d%3A0x1234567890abcdef!2sGedung%20Serbaguna%20Utama!5e0!3m2!1sid!2sid!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lokasi Resepsi"></iframe>
@@ -583,13 +653,14 @@
         </div>
     </section>
 
+    <!-- Section 6: RSVP & Wish -->
     <section class="py-12 md:py-24 section-light relative z-10">
         <div class="container mx-auto px-4 max-w-3xl">
             <div class="bg-white p-6 md:p-8 lg:p-12 rounded-2xl md:rounded-3xl shadow-2xl" data-aos="fade-up">
                 <h2 class="font-aesthetic text-3xl md:text-5xl text-center mb-2" style="color: var(--primary-brown);" data-aos="fade-up">Konfirmasi Kehadiran</h2>
                 <p class="text-center text-xs md:text-sm text-gray-500 mb-8 md:mb-10">Bantu kami untuk mempersiapkan acara dengan sebaik-baiknya</p>
                 
-                <!-- Statistik Tamu -->
+                <!-- Guest Statistics -->
                 <div id="guestStats" class="grid grid-cols-3 gap-2 md:gap-3 mb-8 md:mb-10 hidden">
                     <div class="stat-card" style="border: 2px solid var(--accent-brown);">
                         <p class="text-xl md:text-2xl font-bold" style="color: var(--accent-brown);"><span id="countHadir">0</span></p>
@@ -605,8 +676,9 @@
                     </div>
                 </div>
 
+                <!-- RSVP Form -->
                 <form id="rsvp-form" class="space-y-5 md:space-y-6">
-                    <!-- Nama -->
+                    <!-- Full Name -->
                     <div>
                         <label class="block text-sm font-bold mb-2" style="color: var(--primary-brown);">Nama Lengkap <span class="text-red-500">*</span></label>
                         <input type="text" id="name" required style="background-color: rgba(160, 136, 107, 0.08); border: 2px solid rgba(160, 136, 107, 0.2);" class="w-full p-3 md:p-4 rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-offset-0 transition-all placeholder-gray-400" placeholder="Masukkan nama lengkap Anda">
@@ -620,33 +692,33 @@
                         <span class="text-xs text-red-500 hidden" id="emailError"><i class="fas fa-exclamation-circle mr-1"></i>Email tidak valid</span>
                     </div>
 
-                    <!-- No Telepon -->
+                    <!-- Phone -->
                     <div>
                         <label class="block text-sm font-bold mb-2" style="color: var(--primary-brown);">Nomor Telepon <span class="text-red-500">*</span></label>
                         <input type="tel" id="phone" required style="background-color: rgba(160, 136, 107, 0.08); border: 2px solid rgba(160, 136, 107, 0.2);" class="w-full p-3 md:p-4 rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-offset-0 transition-all placeholder-gray-400" placeholder="+62 8xx xxxx xxxx">
                         <span class="text-xs text-red-500 hidden" id="phoneError"><i class="fas fa-exclamation-circle mr-1"></i>Nomor telepon tidak valid</span>
                     </div>
 
-                    <!-- Status Kehadiran -->
+                    <!-- Attendance Status -->
                     <div>
                         <label class="block text-sm font-bold mb-3" style="color: var(--primary-brown);">Status Kehadiran <span class="text-red-500">*</span></label>
                         <div class="grid grid-cols-3 gap-2 md:gap-3">
-                            <label class="flex items-center p-3 md:p-4 rounded-xl md:rounded-2xl cursor-pointer transition-all border-2" style="background-color: rgba(160, 136, 107, 0.05); border-color: rgba(160, 136, 107, 0.2);">
+                            <label class="flex items-center p-3 md:p-4 rounded-xl md:rounded-2xl cursor-pointer transition-all border-2 hover:bg-gray-50" style="background-color: rgba(160, 136, 107, 0.05); border-color: rgba(160, 136, 107, 0.2);">
                                 <input type="radio" name="status" value="Akan Hadir" required class="mr-2 md:mr-3 cursor-pointer w-4 h-4">
                                 <span class="text-xs md:text-sm font-bold" style="color: var(--primary-brown);">Akan Hadir</span>
                             </label>
-                            <label class="flex items-center p-3 md:p-4 rounded-xl md:rounded-2xl cursor-pointer transition-all border-2" style="background-color: rgba(201, 169, 97, 0.05); border-color: rgba(201, 169, 97, 0.2);">
+                            <label class="flex items-center p-3 md:p-4 rounded-xl md:rounded-2xl cursor-pointer transition-all border-2 hover:bg-gray-50" style="background-color: rgba(201, 169, 97, 0.05); border-color: rgba(201, 169, 97, 0.2);">
                                 <input type="radio" name="status" value="Belum Pasti" required class="mr-2 md:mr-3 cursor-pointer w-4 h-4">
                                 <span class="text-xs md:text-sm font-bold" style="color: var(--primary-brown);">Belum Pasti</span>
                             </label>
-                            <label class="flex items-center p-3 md:p-4 rounded-xl md:rounded-2xl cursor-pointer transition-all border-2" style="background-color: rgba(232, 165, 165, 0.05); border-color: rgba(232, 165, 165, 0.2);">
+                            <label class="flex items-center p-3 md:p-4 rounded-xl md:rounded-2xl cursor-pointer transition-all border-2 hover:bg-gray-50" style="background-color: rgba(232, 165, 165, 0.05); border-color: rgba(232, 165, 165, 0.2);">
                                 <input type="radio" name="status" value="Tidak Hadir" required class="mr-2 md:mr-3 cursor-pointer w-4 h-4">
                                 <span class="text-xs md:text-sm font-bold" style="color: var(--primary-brown);">Tidak Hadir</span>
                             </label>
                         </div>
                     </div>
 
-                    <!-- Jumlah Tamu -->
+                    <!-- Guest Count -->
                     <div id="guestCountContainer" style="display:none;">
                         <label class="block text-sm font-bold mb-2" style="color: var(--primary-brown);">Jumlah Tamu <span class="text-red-500">*</span></label>
                         <select id="guestCount" style="background-color: rgba(160, 136, 107, 0.08); border: 2px solid rgba(160, 136, 107, 0.2);" class="w-full p-3 md:p-4 rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-offset-0 transition-all">
@@ -660,24 +732,26 @@
                         </select>
                     </div>
 
-                    <!-- Catatan Khusus -->
+                    <!-- Special Notes -->
                     <div>
                         <label class="block text-sm font-bold mb-2" style="color: var(--primary-brown);">Catatan Khusus (Alergi/Preferensi)</label>
                         <textarea id="notes" rows="2" style="background-color: rgba(160, 136, 107, 0.08); border: 2px solid rgba(160, 136, 107, 0.2);" class="w-full p-3 md:p-4 rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-offset-0 transition-all placeholder-gray-400 resize-none" placeholder="Contoh: Alergi kacang, Vegetarian, dll (Opsional)"></textarea>
                     </div>
 
-                    <!-- Ucapan -->
+                    <!-- Wishes -->
                     <div>
                         <label class="block text-sm font-bold mb-2" style="color: var(--primary-brown);">Doa & Ucapan <span class="text-red-500">*</span></label>
                         <textarea id="wish" rows="4" required style="background-color: rgba(160, 136, 107, 0.08); border: 2px solid rgba(160, 136, 107, 0.2);" class="w-full p-3 md:p-4 rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-offset-0 transition-all placeholder-gray-400 resize-none" placeholder="Tulis ucapan dan doa terbaik untuk kami..."></textarea>
                         <div class="text-xs text-gray-500 mt-1"><span id="charCount">0</span>/500 karakter</div>
                     </div>
 
+                    <!-- Submit Button -->
                     <button type="submit" id="submitBtn" class="w-full text-white py-3 md:py-4 rounded-xl md:rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all" style="background: linear-gradient(135deg, var(--accent-gold), var(--accent-brown));">
                         <i class="fas fa-paper-plane mr-2"></i> KIRIM KONFIRMASI
                     </button>
                 </form>
                 
+                <!-- Wishes Display -->
                 <div class="mt-12 md:mt-16 pt-8 md:pt-10" style="border-top: 2px solid rgba(160, 136, 107, 0.2);">
                     <h3 class="text-center font-aesthetic text-2xl md:text-3xl mb-2" style="color: var(--primary-brown);">Doa & Harapan</h3>
                     <p class="text-center text-xs text-gray-500 mb-6 italic">Terima kasih atas dukungan dan doa terbaik dari Anda</p>
@@ -689,23 +763,24 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="py-12 relative z-10 border-t-4" style="background: linear-gradient(135deg, var(--primary-brown), var(--accent-brown)); border-top-color: var(--accent-gold); color: white;">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-3 gap-8 mb-8">
-                <!-- Kolom 1: Info -->
+                <!-- Column 1: Info -->
                 <div class="text-center md:text-left">
                     <h3 class="font-aesthetic text-2xl mb-3" style="color: var(--accent-gold);">Romeo & Juliet</h3>
                     <p class="text-xs text-white/80">Undangan pernikahan digital yang dirancang dengan cinta dan perhatian terhadap detail.</p>
                 </div>
 
-                <!-- Kolom 2: Contact -->
+                <!-- Column 2: Contact -->
                 <div class="text-center">
                     <h4 class="font-bold text-sm mb-3 uppercase tracking-widest">Hubungi Kami</h4>
                     <p class="text-xs text-white/80 mb-2"><i class="fas fa-phone mr-2" style="color: var(--accent-gold);"></i> +62 812-3456-7890</p>
                     <p class="text-xs text-white/80"><i class="fas fa-envelope mr-2" style="color: var(--accent-gold);"></i> romeo.juliet@wedding.com</p>
                 </div>
 
-                <!-- Kolom 3: Social -->
+                <!-- Column 3: Social -->
                 <div class="text-center md:text-right">
                     <h4 class="font-bold text-sm mb-3 uppercase tracking-widest">Ikuti Kami</h4>
                     <div class="flex justify-center md:justify-end gap-3">
@@ -725,40 +800,36 @@
     </footer>
 </main>
 
+<!-- Scripts -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // Inisialisasi AOS (Looping aktif)
+    // Initialize AOS
     AOS.init({ 
         duration: 1000, 
         once: false, 
         mirror: true 
     });
 
+    // Global Variables
     const music = document.getElementById('weddingMusic');
     const musicIcon = document.getElementById('musicIcon');
-    
-    // ============= KONFIGURASI API =============
-    // Gunakan FormSubmit.co (gratis, tidak perlu API key)
-    const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'; // Ganti dengan form ID Anda
-    // Atau gunakan alternative:
-    const USE_LOCAL_STORAGE = true; // Gunakan localStorage jika API tidak tersedia
+    const USE_LOCAL_STORAGE = true;
 
-    // Reset Scroll saat Refresh
-    window.onload = function() {
+    // Reset scroll on page load
+    window.addEventListener('load', function() {
         window.scrollTo(0, 0);
         loadWishes();
-    };
+    });
 
+    // Open Invitation
     function bukaUndangan() {
         music.play().catch(err => {
             console.log("Audio autoplay dimulai. User perlu berinteraksi terlebih dahulu.");
         });
         
-        // Aktifkan scroll
         document.body.classList.remove('overflow-hidden');
         window.scrollTo(0, 0); 
         
-        // Transisi Cover dengan animasi smooth
         document.getElementById('controls').classList.remove('hidden');
         document.getElementById('overlay').style.animation = 'slideOutUp 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
         document.getElementById('main-content').style.animation = 'fadeInUp 1s ease-out forwards';
@@ -769,6 +840,7 @@
         }, 1200);
     }
 
+    // Toggle Music
     function toggleMusic() {
         if (music.paused) {
             music.play();
@@ -779,6 +851,7 @@
         }
     }
 
+    // Toggle Fullscreen
     function toggleFullscreen() {
         if (!document.fullscreenElement) {
             document.documentElement.requestFullscreen().catch(err => {
@@ -793,7 +866,7 @@
         }
     }
 
-    // Countdown Logic
+    // Countdown Timer
     const weddingDate = new Date("May 17, 2026 08:00:00").getTime();
     const updateCountdown = setInterval(() => {
         const now = new Date().getTime();
@@ -814,13 +887,13 @@
         document.getElementById("seconds").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
     }, 1000);
 
-    // RSVP Form Logic
+    // Form Variables
     const statusRadios = document.querySelectorAll('input[name="status"]');
     const guestCountContainer = document.getElementById('guestCountContainer');
     const wishTextarea = document.getElementById('wish');
     const charCountSpan = document.getElementById('charCount');
     
-    // Character counter for wish
+    // Character Counter
     wishTextarea.addEventListener('input', function() {
         charCountSpan.textContent = this.value.length;
         if(this.value.length > 500) {
@@ -829,7 +902,7 @@
         }
     });
 
-    // Show/hide guest count field based on status
+    // Show/Hide Guest Count
     statusRadios.forEach(radio => {
         radio.addEventListener('change', function() {
             if(this.value === 'Akan Hadir') {
@@ -842,7 +915,7 @@
         });
     });
 
-    // Validation functions
+    // Validation Functions
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
@@ -859,6 +932,7 @@
         document.getElementById('phoneError').classList.add('hidden');
     }
 
+    // Success Message
     function showSuccessMessage() {
         const successEl = document.createElement('div');
         successEl.className = 'success-message';
@@ -868,14 +942,12 @@
             </div>
             <h3 class="font-bold text-lg mb-2" style="color: var(--primary-brown);">Terima Kasih!</h3>
             <p class="text-sm text-gray-600 mb-4">Konfirmasi kehadiran Anda telah kami terima. Kami menunggu kehadiran Anda! 💕</p>
-            <button type="button" onclick="this.parentElement.remove()" class="text-xs px-4 py-2 rounded-full" style="background: var(--accent-brown); color: white;">Tutup</button>
+            <button type="button" onclick="this.parentElement.remove()" class="text-xs px-4 py-2 rounded-full" style="background: var(--accent-brown); color: white; border: none; cursor: pointer;">Tutup</button>
         `;
         document.body.appendChild(successEl);
-        setTimeout(() => {
-            successEl.style.animation = 'fadeInUp 0.5s ease-out';
-        }, 100);
     }
 
+    // Error Message
     function showErrorMessage(message) {
         const errorEl = document.createElement('div');
         errorEl.className = 'error-toast';
@@ -886,7 +958,7 @@
         }, 4000);
     }
 
-    // Form submission
+    // Form Submission
     document.getElementById('rsvp-form').addEventListener('submit', function(e) {
         e.preventDefault();
         clearErrors();
@@ -949,7 +1021,7 @@
             tanggal_submit: new Date().toLocaleString('id-ID')
         };
 
-        // Gunakan localStorage sebagai backup
+        // Save to localStorage
         if(USE_LOCAL_STORAGE) {
             let wishes = JSON.parse(localStorage.getItem('wedding_wishes') || '[]');
             wishes.push(formData);
@@ -970,40 +1042,10 @@
                     document.getElementById('wish-container').scrollIntoView({ behavior: 'smooth' });
                 }, 500);
             }, 800);
-        } else {
-            // Gunakan Formspree atau API eksternal
-            fetch(FORM_ENDPOINT, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            })
-            .then(res => res.ok ? Promise.resolve() : Promise.reject())
-            .then(() => {
-                showSuccessMessage();
-                this.reset();
-                guestCountContainer.style.display = 'none';
-                charCountSpan.textContent = '0';
-                loadWishes();
-            })
-            .catch(() => {
-                // Fallback ke localStorage
-                let wishes = JSON.parse(localStorage.getItem('wedding_wishes') || '[]');
-                wishes.push(formData);
-                localStorage.setItem('wedding_wishes', JSON.stringify(wishes));
-                showSuccessMessage();
-                this.reset();
-                guestCountContainer.style.display = 'none';
-                charCountSpan.textContent = '0';
-                loadWishes();
-            })
-            .finally(() => {
-                btn.innerHTML = "<i class='fas fa-paper-plane mr-2'></i> KIRIM KONFIRMASI";
-                btn.disabled = false;
-            });
         }
     });
 
-    // Load wishes from localStorage
+    // Load Wishes
     function loadWishes() {
         const container = document.getElementById('wish-container');
         const guestStats = document.getElementById('guestStats');
@@ -1019,7 +1061,7 @@
                 return;
             }
 
-            // Hitung statistik
+            // Count statistics
             let countHadir = 0, countBelumPasti = 0, countTidakHadir = 0;
             data.forEach(item => {
                 if(item.status === 'Akan Hadir') countHadir++;
@@ -1027,7 +1069,7 @@
                 else if(item.status === 'Tidak Hadir') countTidakHadir++;
             });
 
-            // Update statistik
+            // Update statistics
             if(data.length > 0) {
                 document.getElementById('countHadir').textContent = countHadir;
                 document.getElementById('countBelumPasti').textContent = countBelumPasti;
@@ -1035,7 +1077,7 @@
                 guestStats.classList.remove('hidden');
             }
 
-            // Sort data terbaru di atas
+            // Display wishes (newest first)
             data.reverse().forEach((item) => {
                 const wishEl = document.createElement('div');
                 const statusColor = item.status === 'Akan Hadir' ? 'text-green-700 bg-green-50' : 
